@@ -37,7 +37,7 @@ function TheaterInfo() {
   };
 
   const fetchMoviesByDateAndTheater = async (token) => {
-    if (date == null) return
+    if (date == null) setDate(new Date());
     try {
       const res = await fetch(
         URL + `theaters/${theaterid}/shows?date=${date}`,
@@ -110,7 +110,7 @@ function TheaterInfo() {
       <div className="top-lvl mx-auto d-flex">
         <div className="icon-cov d-flex align-items-center pt-3 justify-content-center">
           <Link to={"/dash/movies/theaterList"}>
-          <FaArrowLeftLong />
+            <FaArrowLeftLong />
           </Link>
         </div>
         <div className="heading blue-font fs-1 ml-5">
@@ -164,43 +164,53 @@ function TheaterInfo() {
 
       {/* Movies List */}
       <div className="theaters">
-        {moviesByTheater?.map((movie, index) => (
-          <div key={index} className="theater py-4 row">
-            <div className="lefty col-10">
-              <div className="title blue-font">{movie?.name}</div>
-              <div className="font-secondary text-black-50 mx-2">
-                {movie?.languages?.[0] || "Language not available"}, 2D
-              </div>
-              <div className="font-secondary text-black-50 mx-2">Time</div>
-              <div className="options d-flex flex-wrap">
-                {movie?.showTimes.map((show, index) => (
-                  <div
-                    key={index}
-                    className={`option m-2 px-3 rounded-gray-border cursor-pointer ${selectedTime == show ? "selected" : ""}`}
-                    onClick={() => handleTimeSelection(show, movie)}
-                  >
-                    <div className="time font-black font-primary fs-6 py-1 font-black">
-                      {new Date(show?.startTime).toLocaleString("en-US", {
-                        minute: "2-digit",
-                        hour: "2-digit",
-                      })}
+        {moviesByTheater.length == 0 ? (
+          <div className="text-black font-primary fs-5  my-5 text-center" style={{ 'height' : "100vh"}}> No Movies For the date</div>
+        ) : (
+          moviesByTheater?.map((movie, index) => (
+            <div key={index} className="theater py-4 row">
+              <div className="lefty col-10">
+                <div className="title blue-font">{movie?.name}</div>
+                <div className="font-secondary text-black-50 mx-2">
+                  {movie?.languages?.[0] || "Language not available"}, 2D
+                </div>
+                <div className="font-secondary text-black-50 mx-2">Time</div>
+                <div className="options d-flex flex-wrap">
+                  {movie?.showTimes.map((show, index) => (
+                    <div
+                      key={index}
+                      className={`option m-2 px-3 rounded-gray-border cursor-pointer ${
+                        selectedTime == show ? "selected" : ""
+                      }`}
+                      onClick={() => handleTimeSelection(show, movie)}
+                    >
+                      <div className="time font-black font-primary fs-6 py-1 font-black">
+                        {new Date(show?.startTime).toLocaleString("en-US", {
+                          minute: "2-digit",
+                          hour: "2-digit",
+                        })}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              </div>
+              <div className="righty col-2 my-auto">
+                {selectedTime && movie?.name == selectedMovie.name ? (
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={toggleModal}
+                  >
+                    {/* {console.log(selectedTime)} */}
+                    Book Now
+                  </button>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
-            <div className="righty col-2 my-auto">
-              {selectedTime && movie?.name == selectedMovie.name ? (
-                <button type="button" className="button" onClick={toggleModal}>
-                  {/* {console.log(selectedTime)} */}
-                  Book Now
-                </button>
-              ) : (
-                <></>
-              )}
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       {/* Booking Modal */}

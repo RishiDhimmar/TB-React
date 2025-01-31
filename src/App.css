@@ -291,10 +291,10 @@ button:disabled:hover {
 }
 @keyframes fadeIn {
   0% {
-    opacity: 0; /* Start invisible */
+    opacity: 0; 
   }
   100% {
-    opacity: 1; /* End fully visible */
+    opacity: 1; 
   }
 }
 .fade-in {
