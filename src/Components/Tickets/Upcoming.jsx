@@ -6,8 +6,8 @@ function Upcoming({ orders }) {
     <>
     <div className="d-flex flex-wrap justify-content-center">
 
-      {orders &&
-        orders.map((order) => {
+      {orders?.length != 0 ?
+        orders?.map((order) => {
           return (
             <TicketFormat
               startTime={order?.showtime?.startTime}
@@ -15,8 +15,11 @@ function Upcoming({ orders }) {
               movieName={order?.showtime?.movie?.name}
               theater={order?.showtime?.screen?.theaterName}
             />
-          );
-        })}
+          )
+        } ) : <>
+        <div className="blue-font fs-4">No Tickets</div>
+        </>
+        }
     </div>
 
     </>
