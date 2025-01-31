@@ -258,6 +258,11 @@ button:disabled {
   background-color: #acabab;
   color: #ffffff;
 }
+button:disabled:hover {
+  background-color: #acabab;
+  color: #ffffff;
+  cursor: not-allowed;
+}
 
 .selected {
   background: #4cace7;

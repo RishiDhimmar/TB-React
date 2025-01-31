@@ -17,11 +17,13 @@ import Ticket from "./Components/Tickets/Ticket";
 import MyTicket from "./Components/Tickets/MyTicket";
 import Upcoming from "./Components/Tickets/Upcoming";
 import History from "./Components/Tickets/History";
+import ErrorElement from "./ErrorElement";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement : <ErrorElement />,
     children: [
       {
         path: "/",

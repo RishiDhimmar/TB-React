@@ -47,7 +47,6 @@ const SelectNumberOfSeats = ({
                     <button
                       className="button w-auto my-3 mx-4 py-3 px-4 font-primary"
                       onClick={() => setSelectedSeat(index + 1)}
-                      
                     >
                       {index + 1}
                     </button>
