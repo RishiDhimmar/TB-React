@@ -24,6 +24,16 @@ const Router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <Authentication />,
+        children: [
+          {
+            path: "/",
+            element: <Login />,
+          },
+        ],
+      },
+      {
         path: "auth",
         element: <Authentication />,
         children: [
@@ -94,7 +104,7 @@ const Router = createBrowserRouter([
             path: "pre-payment",
             element: <PrePayment />,
           },
-          
+
           {
             path: "show-ticket",
             element: <Ticket />,

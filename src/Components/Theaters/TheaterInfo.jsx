@@ -37,6 +37,7 @@ function TheaterInfo() {
   };
 
   const fetchMoviesByDateAndTheater = async (token) => {
+    if (date == null) return
     try {
       const res = await fetch(
         URL + `theaters/${theaterid}/shows?date=${date}`,
@@ -133,17 +134,6 @@ function TheaterInfo() {
             onClick={() => handleDateChange(new Date())}
           />
         </div>
-        {/* <div
-          className="btn inactive border border-secondary rounded px-3"
-          onClick={() => handleDateChange(new Date())}
-        >
-          <div className="date font-secondary fs-6 text-black">
-            {formatDate(Date.now()).day}
-          </div>
-          <div className="day font-secondary fw-bold text-center fs-6 text-black-50">
-            {formatDate(Date.now()).weekday}
-          </div>
-        </div> */}
 
         {[...Array(7)].map((ele, index) => {
           const temp = new Date(Date.now() + 24 * 60 * 60 * 1000 * index);
@@ -165,19 +155,6 @@ function TheaterInfo() {
           );
         })}
 
-        {/* <div
-          className="btn inactive border border-secondary rounded px-3"
-          onClick={() =>
-            handleDateChange(new Date(Date.now() + 24 * 60 * 60 * 1000 * 2))
-          }
-        >
-          <div className="date font-secondary fs-6 text-black">
-            {formatDate(Date.now() + 24 * 60 * 60 * 1000 * 2).day}
-          </div>
-          <div className="day font-secondary fw-bold text-center fs-6 text-black-50">
-            {formatDate(Date.now() + 24 * 60 * 60 * 1000 * 2).weekday}
-          </div>
-        </div> */}
         <div className="right-arr d-flex align-items-center">
           <IoMdArrowDropright className="blue-font fs-1 cursor-pointer" />
         </div>

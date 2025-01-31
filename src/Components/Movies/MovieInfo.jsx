@@ -8,6 +8,7 @@ import TimeSelection from "./TimeSelection";
 import MoviePoster from "./MoviePoster";
 import SelectedInfo from "./SelectedInfo";
 import SelectNumberOfSeats from "../Seats/SelectNumberOfSeats";
+import MovieDes from "./MovieDes";
 
 function MovieInfo() {
   const { movieid } = useParams();
@@ -87,34 +88,15 @@ function MovieInfo() {
         <div className="righty container col-4 mh-vh-100 d-flex justify-content-center">
           <div className="container mx-auto">
             <MoviePoster movie={movie} />
-            <div class="movie-details">
-                <div class="movie-title">
-                  <div class="blue-font fs-2">
+            <div className="movie-details">
+                <div className="movie-title">
+                  <div className="blue-font fs-2">
                     {movie?.name}
                   </div>
                 </div>
                 {console.log(movie)
                 }
-                <div class="font-secondary text-black ">
-                  <div class="temp">{movie?.description}</div>
-                  <div className="line border my-3"></div>
-                  <div class="row my-2">
-                    <div class="col">Duration</div>
-                    <div class="col">{Math.floor(movie?.duration/60)}h {" " + movie?.duration%60}m</div>
-                  </div>
-                  <div class="row my-2">
-                    <div class="col">Language</div>
-                    <div class="col">{movie?.languages.join(", ")}</div>
-                  </div>
-                  <div class="row my-2">
-                    <div class="col">Category</div>
-                    <div class="col">{movie?.category.join(", ")}</div>
-                  </div>
-                  <div class="row my-2">
-                    <div class="col">Type</div>
-                    <div class="col">2D</div>
-                  </div>
-                </div>
+                <MovieDes movie={movie} />
               </div>
             <SelectedInfo
               selectedTheater={selectedTheater}

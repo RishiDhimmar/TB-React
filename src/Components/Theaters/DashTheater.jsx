@@ -54,7 +54,6 @@ function DashTheater() {
                           <img
                             src="/images/location.png"
                             alt="location"
-                            srcset=""
                           />
                         </div>
                         <div className="text mx-3">

@@ -8,22 +8,21 @@ const Layout = () => {
     navigate("/auth/login");
   };
   return (
-    <div class="container-fluid grad-bgc">
-      <nav class="navbar d-flex justify-content-between">
-        <div class="first">
-          <div class="logo-cover">
+    <div className="container-fluid grad-bgc">
+      <nav className="navbar d-flex justify-content-between">
+        <div className="first">
+          <div className="logo-cover">
             <img
               src="/images/logo.png"
               alt="logo"
-              srcset=""
-              class="w-60"
+              className="w-60"
               width="70"
             />
           </div>
         </div>
-        <div class="middle">
-          <div class="booking-options d-flex">
-            <div class="home mx-2 blue-font underline">
+        <div className="middle">
+          <div className="booking-options d-flex">
+            <div className="home mx-2 blue-font underline">
               <Link
                 to="/dash/movies/movieList"
                 className="text-decoration-none blue-font"
@@ -31,7 +30,7 @@ const Layout = () => {
                 Home
               </Link>
             </div>
-            <div class="my-ticket mx-2 blue-font underline">
+            <div className="my-ticket mx-2 blue-font underline">
               <Link
                 to="/dash/my-tickets/upcoming"
                 className="text-decoration-none blue-font"
@@ -41,17 +40,17 @@ const Layout = () => {
             </div>
           </div>
         </div>
-        <div class="last">
+        <div className="last">
           <button
             type="button"
-            class="button logout px-3"
+            className="button logout px-3"
             onClick={handleLogout}
           >
             Logout
           </button>
         </div>
       </nav>
-      <div class="content container">
+      <div className="content container">
         <Outlet />
       </div>
     </div>

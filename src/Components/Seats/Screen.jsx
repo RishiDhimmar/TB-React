@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { URL } from "../../center";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 function Screen() {
   const { showTimeId } = useParams();
@@ -77,17 +78,6 @@ function Screen() {
     getScreenById();
   }, [showTimeId, navigate]);
 
-  // const handleSeatClicked = (seat, type) => {
-  //   if (selectedSeats.length < numOfSeats) {
-  //     setSelectedSeats((prevSeats) => {
-  //       const newSeat = { seatNo: seat, type };
-  //       if (!prevSeats.some((s) => s.seatNo === seat && s.type === type)) {
-  //         return [...prevSeats, newSeat];
-  //       }
-  //       return prevSeats.filter((s) => !(s.seatNo === seat && s.type === type));
-  //     });
-  //   }
-  // };
   const handleSeatClicked = (seat, type) => {
     setSelectedSeats((prevSeats) => {
       if (prevSeats.some((s) => s.seatNo === seat && s.type === type)) {
@@ -97,7 +87,7 @@ function Screen() {
       if (selectedSeats?.length < numOfSeats) {
         return [...prevSeats, newSeat];
       }
-      return prevSeats
+      return prevSeats;
     });
   };
 
@@ -116,14 +106,12 @@ function Screen() {
 
   return (
     <div className="container-fluid grad-bgc my-0 overflow-hidden ">
-      <div className="top-lvl mx-5 my-5 d-flex">
-        <div className="icon-cov cursor-pointer">
-          <img
-            src="/images/leftArrow.png"
-            alt="Back"
-            className="mx-5 w-100 cursor-pointer"
-            onClick={() => navigate(-1)}
-          />
+      <div className="top-lvl mx-5 my-5 ">
+        <div
+          className="icon-cov cursor-pointer mx-4 "
+          onClick={() => navigate(-1)}
+        >
+          <FaArrowLeftLong />
         </div>
         <div className="heading blue-font fs-1 p-4">Select Seat</div>
       </div>
@@ -154,19 +142,21 @@ function Screen() {
                 {ele?.layout?.rows?.map((row, rowIndex) => (
                   <div key={rowIndex} className="row seat-row col-10">
                     {Array.from({ length: ele?.layout?.columns[1] }).map(
-                      (col, colIndex) => (
-                        <button
-                          key={row + (colIndex + 1)}
-                          type="button"
-                          className={` seatBtn inactive text-black-50 border font-primary`}
-                          onClick={(event) => {
-                            handleSeatClicked(row + (colIndex + 1), ele.type);
-                          }}
-                          disabled={isUnavailable(row, colIndex + 1)}
-                        >
-                          {row + (colIndex + 1)}
-                        </button>
-                      )
+                      (col, colIndex) => {
+                        return (
+                          <button
+                            key={row + (colIndex + 1)}
+                            type="button"
+                            className={` seatBtn inactive text-black-50 border font-primary `}
+                            onClick={(event) => {
+                              handleSeatClicked(row + (colIndex + 1), ele.type);
+                            }}
+                            disabled={isUnavailable(row, colIndex + 1)}
+                          >
+                            {row + (colIndex + 1)}
+                          </button>
+                        );
+                      }
                     )}
                   </div>
                 ))}

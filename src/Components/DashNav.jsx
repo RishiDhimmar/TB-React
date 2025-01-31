@@ -5,8 +5,8 @@ function DashMovie() {
   const navigate = useNavigate();
   return (
     <>
-      <div class="now-show blue-large mb-5">Now Showing</div>
-      <div class="btns mb-5 d-flex" style={{"maxHeight" : "50px"}}>
+      <div className="now-show blue-large mb-5">Now Showing</div>
+      <div className="btns mb-5 d-flex" style={{"maxHeight" : "50px"}}>
         <button
           type="button"
           className="btn button"
@@ -15,7 +15,7 @@ function DashMovie() {
         >
           Movie
         </button>
-        <div class="gap"></div>
+        <div className="gap"></div>
         <button
           type="button"
           className=" inactive btn"

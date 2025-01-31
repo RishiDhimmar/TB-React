@@ -38,7 +38,7 @@ const Login = () => {
       console.log(resData);
 
       localStorage.setItem("token" , resData.data.accessToken)
-      navigate('/dash/movies')
+      navigate('/dash/movies/movieList')
     } catch (e) {
       console.log("Error : " + e.message);
       setErrorMessage(e.message);
